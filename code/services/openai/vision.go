@@ -29,7 +29,7 @@ type VisionRequestBody struct {
 func (gpt *ChatGPT) GetVisionInfo(msg []VisionMessages) (
 	resp Messages, err error) {
 	requestBody := VisionRequestBody{
-		Model:     "gpt-4-vision-preview",
+		Model:     "gpt-4o",
 		Messages:  msg,
 		MaxTokens: gpt.MaxTokens,
 	}

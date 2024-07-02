@@ -35,7 +35,7 @@ func TestVisionOnePic(t *testing.T) {
 	}
 
 	msgs := []VisionMessages{
-		{Role: "assistant", Content: content},
+		{Role: "user", Content: content},
 	}
 	gpt := NewChatGPT(*config)
 	resp, err := gpt.GetVisionInfo(msgs)
@@ -49,7 +49,7 @@ func TestGenerateOneImage(t *testing.T) {
 	config := initialization.LoadConfig("../../config.yaml")
 	gpt := NewChatGPT(*config)
 	prompt := "a red apple"
-	size := "256x256"
+	size := "1024x1024"
 	imageURL, err := gpt.GenerateOneImage(prompt, size, "")
 	if err != nil {
 		t.Errorf("TestGenerateOneImage failed with error: %v", err)
@@ -78,7 +78,7 @@ func TestVariateOneImage(t *testing.T) {
 	config := initialization.LoadConfig("../../config.yaml")
 	gpt := NewChatGPT(*config)
 	image := "./test_file/img.png"
-	size := "256x256"
+	size := "1024x1024"
 	//compressionType, err := GetImageCompressionType(image)
 	//if err != nil {
 	//	return
@@ -105,7 +105,7 @@ func TestVariateOneImageWithJpg(t *testing.T) {
 	config := initialization.LoadConfig("../../config.yaml")
 	gpt := NewChatGPT(*config)
 	image := "./test_file/test.jpg"
-	size := "256x256"
+	size := "1024x1024"
 	compressionType, err := GetImageCompressionType(image)
 	if err != nil {
 		return
@@ -130,15 +130,15 @@ func TestVariateOneImageWithJpg(t *testing.T) {
 }
 
 // 余额接口已经被废弃
-func TestChatGPT_GetBalance(t *testing.T) {
-	config := initialization.LoadConfig("../../config.yaml")
-	gpt := NewChatGPT(*config)
-	balance, err := gpt.GetBalance()
-	if err != nil {
-		t.Errorf("TestChatGPT_GetBalance failed with error: %v", err)
-	}
-	fmt.Println("balance: ", balance)
-}
+//func TestChatGPT_GetBalance(t *testing.T) {
+//	config := initialization.LoadConfig("../../config.yaml")
+//	gpt := NewChatGPT(*config)
+//	balance, err := gpt.GetBalance()
+//	if err != nil {
+//		t.Errorf("TestChatGPT_GetBalance failed with error: %v", err)
+//	}
+//	fmt.Println("balance: ", balance)
+//}
 
 func TestChatGPT_streamChat(t *testing.T) {
 	// 初始化配置

@@ -16,29 +16,12 @@ func setDefaultPrompt(msg []openai.Messages) []openai.Messages {
 			Role: "system", Content: "You are ChatGPT, " +
 				"a large language model trained by OpenAI. " +
 				"Answer in user's language as concisely as" +
-				" possible. Knowledge cutoff: 20230601 " +
+				" possible. " +
 				"Current date" + time.Now().Format("20060102"),
 		})
 	}
 	return msg
 }
-
-//func setDefaultVisionPrompt(msg []openai.VisionMessages) []openai.VisionMessages {
-//	if !hasSystemRole(msg) {
-//		msg = append(msg, openai.VisionMessages{
-//			Role: "system", Content: []openai.ContentType{
-//				{Type: "text", Text: "You are ChatGPT4V, " +
-//					"You are ChatGPT4V, " +
-//					"a large language and picture model trained by" +
-//					" OpenAI. " +
-//					"Answer in user's language as concisely as" +
-//					" possible. Knowledge cutoff: 20230601 " +
-//					"Current date" + time.Now().Format("20060102"),
-//				}},
-//		})
-//	}
-//	return msg
-//}
 
 type MessageAction struct { /*消息*/
 }
@@ -87,7 +70,7 @@ func (*MessageAction) Execute(a *ActionInfo) bool {
 	return true
 }
 
-//判断msg中的是否包含system role
+// 判断msg中的是否包含system role
 func hasSystemRole(msg []openai.Messages) bool {
 	for _, m := range msg {
 		if m.Role == "system" {
